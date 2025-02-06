@@ -18,9 +18,9 @@ public class ProductController {
     private ProductService service;
 
     @PostMapping()
-    public ResponseEntity createProduct(@RequestBody Product product) {
-        boolean status = service.createProduct(product);
-        return new ResponseEntity(HttpStatus.CREATED);
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        Product productRes = service.createProduct(product);
+        return new ResponseEntity(productRes, HttpStatus.CREATED);
     }
 
     @GetMapping

@@ -3,6 +3,8 @@ package com.example.demo.entity;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Entity;
+
 @Entity
 public class Product {
     private int id;

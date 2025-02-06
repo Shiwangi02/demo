@@ -13,8 +13,8 @@ public class ProductService {
     @Autowired
     private ProductRepository repo;
 
-    public boolean createProduct(Product product) {
-        return repo.insert(product);
+    public Product createProduct(Product product) {
+        return repo.save(product);
     }
 
     public List<Product> getProducts() {
@@ -22,10 +22,15 @@ public class ProductService {
     }
 
     public Product updateProduct(Product product, int id) {
-        return repo.updateById(product, id);
+    	Product getProduct = repo.getById(id);
+    	getProduct.setPrice(product.getPrice());
+    	getProduct.setDescription(product.getDescription());
+    	getProduct.setName(product.getName());
+        return repo.save(getProduct);
     }
 
     public boolean deleteProduct(int id) {
-        return repo.deleteById(id);
+        repo.deleteById(id);
+        return true;
     }
 }
